@@ -239,9 +239,9 @@ function LandingPage() {
       </header>
 
       <main>
-        <section className="bg-white">
-          <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center">
-            <div>
+        <section className="overflow-hidden bg-white">
+          <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 md:min-h-[560px] md:grid-cols-2 md:items-center md:gap-8 md:py-16">
+            <div className="relative z-10 py-6 md:py-10">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#087e89]">
                 Hon. Linda 2026
               </p>
@@ -256,14 +256,22 @@ function LandingPage() {
                 I support Linda
               </Link>
             </div>
-            <div className="rounded-2xl bg-linear-to-br from-[#009ba5] to-[#087e89] p-10 text-white shadow-lg">
-              <p className="text-sm uppercase tracking-widest text-cyan-100">
-                Campaign Promise
-              </p>
-              <p className="mt-3 text-2xl font-bold leading-snug">
-                Better education, safer communities, and economic opportunities
-                for every family.
-              </p>
+            <div className="relative isolate flex min-h-[360px] items-end overflow-hidden bg-[#dce9e7] shadow-sm sm:min-h-[460px] md:min-h-[500px]">
+              <img
+                src="/FB_IMG_1743869048255.jpg"
+                alt="Hon. Linda"
+                className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_30%]"
+              />
+              <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#063b3d]/90 via-[#063b3d]/20 to-transparent" />
+              <div className="m-4 rounded-2xl border border-white/40 bg-white/90 p-5 text-slate-900 shadow-lg backdrop-blur-sm sm:m-6 sm:p-7">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#087e89]">
+                  Campaign Promise
+                </p>
+                <p className="mt-2 text-xl font-bold leading-snug sm:text-2xl">
+                  Better education, safer communities, and economic
+                  opportunities for every family.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -347,7 +355,10 @@ function SupportPage() {
   const [showPreview, setShowPreview] = useState(false);
   const [previewData, setPreviewData] = useState(null);
   const noteCharacterCount = countCharacters(note);
-  const hasTooManyCharacters = noteCharacterCount > 150;
+  const hasTooFewCharacters = noteCharacterCount < 100;
+  const hasTooManyCharacters = noteCharacterCount > 200;
+  const isNoteLengthInvalid =
+    noteCharacterCount > 0 && (hasTooFewCharacters || hasTooManyCharacters);
 
   const generateCertificate = async (photoFile, nameValue, noteValue) => {
     const [templateImage, supporterImage] = await Promise.all([
@@ -402,7 +413,7 @@ function SupportPage() {
     );
 
     ctx.font = `700 ${Math.round(canvas.height * 0.021)}px Inter, Segoe UI, sans-serif`;
-    ctx.fillText(nameValue.trim(), textZone.x, nameY + 8 * scaleY);
+    ctx.fillText(nameValue.trim(), textZone.x, nameY + 28 * scaleY);
     ctx.textAlign = "end";
     ctx.textBaseline = "top";
     ctx.shadowColor = "transparent";
@@ -425,8 +436,15 @@ function SupportPage() {
       return;
     }
 
+    if (hasTooFewCharacters) {
+      setMessage(
+        "Your support message should be atleast a 100 characters or more",
+      );
+      return;
+    }
+
     if (hasTooManyCharacters) {
-      setMessage("Your support note must not be more than 150 characters.");
+      setMessage("Your support note must not be more than 200 characters.");
       return;
     }
 
@@ -587,16 +605,25 @@ function SupportPage() {
                       id="note"
                       value={note}
                       onChange={(event) => setNote(event.target.value)}
-                      maxLength={150}
+                      maxLength={200}
                       rows={4}
                       placeholder="Write a your short message of support..."
-                      className="w-full rounded-md border border-slate-300 px-3 py-2 outline-none ring-cyan-200 focus:ring-2"
+                      aria-invalid={isNoteLengthInvalid}
+                      className={`w-full rounded-md border px-3 py-2 outline-none focus:ring-2 ${isNoteLengthInvalid ? "border-red-500 ring-red-200" : "border-slate-300 ring-cyan-200"}`}
                       required
                     />
+                    {message && (
+                      <p
+                        role="alert"
+                        className="text-sm font-medium text-red-600"
+                      >
+                        {message}
+                      </p>
+                    )}
                     <p
                       className={`mt-1 text-xs ${hasTooManyCharacters ? "text-red-600" : "text-slate-500"}`}
                     >
-                      {noteCharacterCount}/150 characters
+                      {noteCharacterCount}/200 characters
                     </p>
                   </div>
 
@@ -608,12 +635,6 @@ function SupportPage() {
                     {isGenerating ? "Generating..." : "Submit"}
                   </button>
                 </form>
-
-                {message && (
-                  <p className="mt-4 rounded-md bg-slate-100 p-3 text-sm font-medium text-slate-700">
-                    {message}
-                  </p>
-                )}
               </>
             ) : (
               <>
