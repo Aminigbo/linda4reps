@@ -1,15 +1,81 @@
 import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { supabase } from "./services/supaBase";
+import s1 from "./assets/s1.jpeg";
+import s2 from "./assets/s2.jpeg";
+import s3 from "./assets/s3.jpeg";
+import s4 from "./assets/s4.jpeg";
+import s5 from "./assets/s5.jpeg";
+import s6 from "./assets/s6.jpeg";
+import s7 from "./assets/s7.jpeg";
+import s8 from "./assets/s8.jpeg";
+import s9 from "./assets/s9.jpeg";
+import photo6942 from "./assets/IMG_6942.JPG";
+import photo6943 from "./assets/IMG_6943.JPG";
+import photo6944 from "./assets/IMG_6944.JPG";
+import photo6945 from "./assets/IMG_6945.JPG";
+import photo6946 from "./assets/IMG_6946.JPG";
+import photo6947 from "./assets/IMG_6947.JPG";
+import photo6948 from "./assets/IMG_6948.JPG";
+import photo6949 from "./assets/IMG_6949.JPG";
+import photo6950 from "./assets/IMG_6950.JPG";
+import photo6951 from "./assets/IMG_6951.JPG";
+import photo6952 from "./assets/IMG_6952.JPG";
+import photo6953 from "./assets/IMG_6953.JPG";
+import photo6954 from "./assets/IMG_6954.JPG";
+import photo6955 from "./assets/IMG_6955.JPG";
 
 const galleryItems = [
-  "Community outreach in Linda Ward",
-  "Meeting women and youth leaders",
-  "Townhall engagement with residents",
-  "Door-to-door campaign moments",
+  s1,
+  s2,
+  s3,
+  s4,
+  s5,
+  s6,
+  s7,
+  s8,
+  s9,
+  photo6942,
+  photo6943,
+  photo6944,
+  photo6945,
+  photo6946,
+  photo6947,
+  photo6948,
+  photo6949,
+  photo6950,
+  photo6951,
+  photo6952,
+  photo6953,
+  photo6954,
+  photo6955,
 ];
 
 const whyLindaItems = [
+  {
+    title: "Effective Representation",
+    description:
+      "She has stood as a consistent voice for her constituents, bringing their concerns to the table, following up on promises, and keeping residents informed about decisions that affect them.",
+    icon: "empowerment",
+  },
+  {
+    title: "Peace & Security",
+    description:
+      "She has promoted peaceful coexistence and dialogue within communities, encouraging cooperation between residents, youth groups, and local leaders to keep neighborhoods safe and united.",
+    icon: "security",
+  },
+  {
+    title: "Technology",
+    description:
+      "She has championed digital literacy and access to technology, helping young people and small business owners learn the skills and tools they need to compete in a changing economy.",
+    icon: "technology",
+  },
+  {
+    title: "Infrastructure & Environment",
+    description:
+      "She has attracted better roads, better infrastructure, and advocated for reliable water, better drainage, and cleaner surroundings, with a focus on practical projects that make daily life easier for her people.",
+    icon: "infrastructure",
+  },
   {
     title: "Empowerment",
     description:
@@ -230,7 +296,7 @@ function LandingPage() {
             href="#"
             className="text-xl font-extrabold tracking-tight text-[#087e89]"
           >
-            Linda Campaign
+            Vote For Linda
           </a>
           <Link to="/support" className={supportButtonClasses}>
             I support Linda
@@ -246,11 +312,12 @@ function LandingPage() {
                 Hon. Linda 2026
               </p>
               <h1 className="mb-4 text-4xl font-extrabold leading-tight sm:text-5xl">
-                Together we can build a stronger community.
+                Together we can build a stronger Constituency.
               </h1>
               <p className="mb-8 text-lg text-slate-600">
-                Join supporters of Hon. Linda and share your reason for standing
-                with progressive, people-centered leadership.
+                Join supporters of Hon. Linda Somiari-Stewart and share your
+                reason for standing with progressive, people-centered
+                Representation.
               </p>
               <Link to="/support" className={supportButtonClasses}>
                 I support Linda
@@ -268,8 +335,8 @@ function LandingPage() {
                   Campaign Promise
                 </p>
                 <p className="mt-2 text-xl font-bold leading-snug sm:text-2xl">
-                  Better education, safer communities, and economic
-                  opportunities for every family.
+                  People are our greatest resource. When we build capacity, we
+                  build a better tomorrow.
                 </p>
               </div>
             </div>
@@ -280,12 +347,23 @@ function LandingPage() {
           id="about"
           className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6"
         >
-          <h2 className="mb-4 text-3xl font-bold">About Hon. Linda</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            Hon. Linda's Commitment to Okrika Constituency
+          </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-slate-600">
-            Hon. Linda is committed to transparent leadership, youth
-            empowerment, and local development. This campaign is about listening
-            to people, creating practical solutions, and building a future where
-            everyone has a fair chance to thrive.
+            My dedication to the people of Okrika goes beyond legislative
+            duties; it is a personal vow to champion development, protect
+            community interests, and ensure every citizen feels the impact of
+            effective governance. I am committed to representing our
+            constituency with integrity, courage, and unwavering focus, pushing
+            for policies and initiatives that address our most pressing needs.
+          </p>
+          <p className="max-w-3xl text-lg leading-relaxed text-slate-600">
+            From accessible education and improved infrastructure to economic
+            empowerment and community welfare, my mission is clear: to deliver
+            responsible leadership that listens, serves, and produces measurable
+            results. Together, we will build an Okrika where opportunities are
+            abundant, voices are heard, and progress is shared by all.
           </p>
         </section>
 
@@ -293,7 +371,9 @@ function LandingPage() {
           id="why-linda"
           className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6"
         >
-          <h2 className="mb-8 text-3xl font-bold">Why Linda</h2>
+          <h2 className="mb-8 text-3xl font-bold">
+            Why Hon. Linda Somiari-Stewart?
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {whyLindaItems.map((item) => (
               <article
@@ -318,15 +398,16 @@ function LandingPage() {
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
             <h2 className="mb-8 text-3xl font-bold">Gallery</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {galleryItems.map((item) => (
+              {galleryItems.map((image, index) => (
                 <div
-                  key={item}
+                  key={image}
                   className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
                 >
-                  <div className="h-40 bg-linear-to-br from-cyan-100 via-teal-100 to-slate-100" />
-                  <p className="p-4 text-sm font-medium text-slate-700">
-                    {item}
-                  </p>
+                  <img
+                    src={image}
+                    alt={`Gallery photo ${index + 1}`}
+                    className="h-56 w-full object-cover"
+                  />
                 </div>
               ))}
             </div>
